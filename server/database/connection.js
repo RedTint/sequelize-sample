@@ -15,7 +15,7 @@ var pool = null;
 var promises = [];
 
 // repositores
-var testRepo = require('./repositories/test-repository');
+var repositories = require('./repositories/repositories');
 
 // initializes the pool
 function init() {
@@ -23,8 +23,10 @@ function init() {
     initFirst = true;
     getPool();
 
-    promises.push( testRepo.init( pool, forceSync ) );
-
+    repositories.forEach(function(repo) {
+        promises.push( repo.init( pool, forceSync ) );
+    });
+    
     return Promise.all(promises);
 }
 

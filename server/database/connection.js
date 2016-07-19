@@ -4,22 +4,22 @@
 var Sequelize = require('Sequelize');
 
 // load config
-var config = require('./config/config');
+var config = require('../config/config');
 var forceSync = config.sequelize.force;
+var mysql = config.mysql;
+var sequelize = config.sequelize;
 
 // variable declarations
 var initFirst = false;
 var pool = null;
-var promises;
+var promises = [];
 
-// repositories
-var testRepo = require('./repositories/test-repository');
 
 // initializes the pool
 function init() {
 
     initFirst = true;
-    promises.push( testRepo.init( forceSync ) );
+    promises.push( require('./repositories/test-repository').init( forceSync ) );
 
     return Promise.all(promises);
 }
@@ -57,3 +57,8 @@ function createPool() {
     );
 
 }
+
+module.exports = {
+    getPool : getPool,
+    init    : init
+};

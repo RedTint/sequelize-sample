@@ -17,8 +17,16 @@ function init(_pool, force) {
 
 }
 
-function insert() {
+function insert(data) {
 
+    console.log('> inserting data');
+
+    if (model) {
+        return model.create({
+            description: data.description
+        })
+    }
+    
 }
 
 function getAll() {

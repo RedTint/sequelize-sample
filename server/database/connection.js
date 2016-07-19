@@ -23,7 +23,6 @@ function init() {
     initFirst = true;
     getPool();
 
-    repo.init(pool, false);
     promises.push( testRepo.init( pool, forceSync ) );
 
     return Promise.all(promises);

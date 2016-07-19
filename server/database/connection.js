@@ -14,12 +14,17 @@ var initFirst = false;
 var pool = null;
 var promises = [];
 
+// repositores
+var testRepo = require('./repositories/test-repository');
 
 // initializes the pool
 function init() {
 
     initFirst = true;
-    promises.push( require('./repositories/test-repository').init( forceSync ) );
+    getPool();
+
+    repo.init(pool, false);
+    promises.push( testRepo.init( pool, forceSync ) );
 
     return Promise.all(promises);
 }

@@ -13,7 +13,8 @@ var config = {
             "min": 2,
             "max": 10,
             "idle": 15000
-        }
+        },
+        "force": false
     }
 
 };

@@ -5,9 +5,12 @@ var pool = connection.getPool();
 var model = require('../models/test-model')(pool);
 
 function init(force) {
+
+    console.log('> initializing test repository');
     return model.sync({
         force: force
     });
+
 }
 
 function insert() {
@@ -24,8 +27,9 @@ function getById(id) {
 
 module.exports = {
 
-    insert: insert,
-    getAll: getAll,
-    getById: getById
+    init    : init,
+    insert  : insert,
+    getAll  : getAll,
+    getById : getById
 
 };

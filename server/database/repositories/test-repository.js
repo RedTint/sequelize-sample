@@ -1,10 +1,14 @@
 'use strict';
 
 var connection = require('../connection');
-var pool = connection.getPool();
-var model = require('../models/test-model')(pool);
+var modelDef = require('../models/test-model');
+var model = null;
+var pool = null;
 
-function init(force) {
+function init(_pool, force) {
+
+    pool = _pool;
+    model = modelDef(pool);
 
     console.log('> initializing test repository');
     return model.sync({

@@ -7,7 +7,7 @@ var Sequelize = require('sequelize');
  */
 module.exports = function(sequelize) {
 
-    var tableName = 'test';
+    var tableName = 'tests';
     var model = {
         id: {
             type: Sequelize.INTEGER,

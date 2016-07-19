@@ -5,18 +5,23 @@ var Sequelize = require('Sequelize');
 
 // load config
 var config = require('./config/config');
+var forceSync = config.sequelize.force;
 
 // variable declarations
-var pool = null;
 var initFirst = false;
+var pool = null;
+var promises;
 
-
+// repositories
+var testRepo = require('./repositories/test-repository');
 
 // initializes the pool
 function init() {
 
     initFirst = true;
+    promises.push( testRepo.init( forceSync ) );
 
+    return Promise.all(promises);
 }
 
 
